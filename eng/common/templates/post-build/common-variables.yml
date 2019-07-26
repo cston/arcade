@@ -1,5 +1,5 @@
 variables:
-  - Publish-Build-Assets
+  - group: Publish-Build-Assets
 
   - name: PublicDevRelease_30_Channel_Id
     value: 3
