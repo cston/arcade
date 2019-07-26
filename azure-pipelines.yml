@@ -39,7 +39,7 @@ stages:
       enablePublishUsingPipelines: $(_PublishUsingPipelines)
       enableTelemetry: true
       graphFileGeneration:
-        enabled: true
+        enabled: false
         includeToolset: true
       helixRepo: dotnet/arcade
       jobs:
@@ -111,7 +111,7 @@ stages:
   - template: eng\common\templates\post-build\post-build.yml
     parameters:
       enableSigningValidation: false
-      enableNugetValidation: false
+      enableNugetValidation: true
 
       # Symbol validation isn't being very reliable lately. This should be enabled back
       # once this issue is resolved: https://github.com/dotnet/arcade/issues/2871
