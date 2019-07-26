@@ -15,4 +15,4 @@ jobs:
       displayName: Set Release Configs Vars
       inputs:
         filePath: $(Build.SourcesDirectory)/eng/common/post-build/setup-maestro-vars.ps1
-        arguments: -ReleaseConfigsPath '$(Build.StagingDirectory)/ReleaseConfigs/ReleaseConfigs.txt''
+        arguments: -ReleaseConfigsPath '$(Build.StagingDirectory)/ReleaseConfigs/ReleaseConfigs.txt'
