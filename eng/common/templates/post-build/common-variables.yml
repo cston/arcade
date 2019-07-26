@@ -2,8 +2,7 @@ variables:
   - group: Publish-Build-Assets
 
   # .NET Core 3 Dev
-  - name: PublicDevRelease_30_Channel_Id
-    value: 3
+  - PublicDevRelease_30_Channel_Id: 3
 
   # .NET Tools - Validation
   - name: PublicValidationRelease_30_Channel_Id
