@@ -1,7 +1,4 @@
 variables:
-  - group: Publish-Build-Assets
-
-  # .NET Core 3 Dev
   - PublicDevRelease_30_Channel_Id: 3
 
   # .NET Tools - Validation
@@ -36,3 +33,6 @@ variables:
     value: 3.0.0
   - name: SymbolToolVersion
     value: 1.0.1
+
+  - group: Publish-Build-Assets
+
