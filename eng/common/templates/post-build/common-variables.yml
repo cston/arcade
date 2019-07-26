@@ -34,5 +34,5 @@ variables:
   - name: SymbolToolVersion
     value: 1.0.1
 
-  - group: Publish-Build-Assets
+  - Publish-Build-Assets
 
