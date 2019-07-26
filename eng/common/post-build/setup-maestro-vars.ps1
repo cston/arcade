@@ -24,3 +24,4 @@ catch {
   Write-Host $_.ScriptStackTrace
   ExitWithExitCode 1
 }
+
