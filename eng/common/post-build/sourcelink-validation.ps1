@@ -141,6 +141,7 @@ $ValidatePackage = {
   }
   else {
     Write-PipelineTaskError "$PackagePath has broken SourceLink links."
+    ExitWithExitCode 1
   }
 }
 
