@@ -1,5 +1,8 @@
 variables:
-  - PublicDevRelease_30_Channel_Id: 3
+  - Publish-Build-Assets
+
+  - name: PublicDevRelease_30_Channel_Id
+    value: 3
 
   # .NET Tools - Validation
   - name: PublicValidationRelease_30_Channel_Id
@@ -33,6 +36,4 @@ variables:
     value: 3.0.0
   - name: SymbolToolVersion
     value: 1.0.1
-
-  - Publish-Build-Assets
 
