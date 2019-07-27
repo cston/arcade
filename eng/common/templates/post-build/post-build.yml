@@ -79,3 +79,13 @@ stages:
     - template: /eng/common/templates/job/execute-sdl.yml
       parameters:
         additionalParameters: ${{ parameters.SDLValidationParameters.params }}
+
+- template: \eng\common\templates\post-build\channels\public-dev-release.yml
+  parameters:
+    enableSymbolValidation: ${{ parameters.enableSymbolValidation }}
+
+- template: \eng\common\templates\post-build\channels\public-validation-release.yml
+
+- template: \eng\common\templates\post-build\channels\public-release.yml
+
+- template: \eng\common\templates\post-build\channels\internal-servicing.yml
