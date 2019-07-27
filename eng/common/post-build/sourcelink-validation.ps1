@@ -18,6 +18,7 @@ $ValidatePackage = {
     [string] $PackagePath                                 # Full path to a Symbols.NuGet package
   )
 
+  $ci=$true
   . $using:PSScriptRoot\..\tools.ps1
 
   # Ensure input file exist

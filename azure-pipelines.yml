@@ -86,7 +86,7 @@ stages:
                 _SignType: test
                 _DotNetPublishToBlobFeed : false
               ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-                _SignType: real
+                _SignType: test
                 _DotNetPublishToBlobFeed : true
                 _Script: eng\validate-sdk.cmd
                 _ValidateSdkArgs: -gitHubPat $(BotAccount-dotnet-maestro-bot-PAT) -barToken $(MaestroAccessToken)
