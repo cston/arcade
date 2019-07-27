@@ -30,7 +30,7 @@ $ValidatePackage = {
   # For now we'll only care about Portable & Embedded PDBs
   $RelevantExtensions = @(".dll", ".exe", ".pdb")
  
-  Write-Host -NoNewLine "Validating" ([System.IO.Path]::GetFileName($PackagePath)) "... "
+   Write-Host -NoNewLine "Validating" ([System.IO.Path]::GetFileName($PackagePath)) "... "
 
   $PackageId = [System.IO.Path]::GetFileNameWithoutExtension($PackagePath)
   $ExtractPath = Join-Path -Path $using:ExtractPath -ChildPath $PackageId
@@ -38,7 +38,7 @@ $ValidatePackage = {
 
   Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-  [System.IO.Directory]::CreateDirectory($ExtractPath);
+  [System.IO.Directory]::CreateDirectory($ExtractPath) | Out-Null
 
   try {
     $zip = [System.IO.Compression.ZipFile]::OpenRead($PackagePath)
@@ -138,10 +138,11 @@ $ValidatePackage = {
 
   if ($FailedFiles -eq 0) {
     Write-Host "Passed."
+    return 0
   }
   else {
     Write-PipelineTaskError "$PackagePath has broken SourceLink links."
-    ExitWithExitCode 1
+    return 1
   }
 }
 
@@ -193,8 +194,18 @@ function ValidateSourceLinkLinks {
       $Jobs += Start-Job -ScriptBlock $ValidatePackage -ArgumentList $_.FullName
     }
 
+  $ValidationFailures = 0
   foreach ($Job in $Jobs) {
-    Wait-Job -Id $Job.Id | Receive-Job
+    $jobResult = Wait-Job -Id $Job.Id | Receive-Job
+    
+    if ($jobResult -ne "0") {
+      $ValidationFailures++
+    }
+  }
+
+  if ($ValidationFailures -gt 0) {
+    Write-PipelineTaskError $ValidationFailures "package(s) failed validation."
+    ExitWithExitCode 1
   }
 }
 
